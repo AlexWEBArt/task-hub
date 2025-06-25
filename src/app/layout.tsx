@@ -1,12 +1,14 @@
-import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import "./globals.css";
-import { SITE_NAME } from "@/constants";
+import { SITE_NAME } from "@/constants"
+import type { Metadata } from "next"
+import { Poppins } from "next/font/google"
+import { Providers } from "./Providers"
+import "./globals.css"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const font = Poppins({
+  variable: "--font-sans",
   subsets: ["latin"],
-});
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+})
 
 export const metadata: Metadata = {
   icons: {
@@ -18,7 +20,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`
   },
   description: "Сomplete tasks and live freely",
-};
+}
 
 export default function RootLayout({
   children,
@@ -26,12 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable}`}
+        className={`${font.variable} antialiased`}
       >
-        {children}
+        <Providers>
+          {
+            children
+          }
+        </Providers>
       </body>
     </html>
-  );
+  )
 }
