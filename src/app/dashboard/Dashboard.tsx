@@ -4,6 +4,7 @@ import { Heading } from "@/components/ui/Heading"
 import { SearchField } from "@/components/ui/search-field/SearchField"
 import { ProjectStats } from "./project-stats/ProjectStats"
 import ProjectStatsChart from "./project-chart/ProjectChart"
+import { LastTasks } from "./last-tasks/LastTasks"
 
 export function Dashboard() {
     return (
@@ -16,10 +17,11 @@ export function Dashboard() {
                         value=""
                     />
                 </div>
-                <div className="grid grid-cols-[25%_75%] gap-6">
+                <div className="grid grid-cols-[25%_75%] gap-6 mb-7">
                     <ProjectStats />
                     <ProjectStatsChart />
                 </div>
+                <LastTasks />
             </div>
             <div className="p-5 h-screen flex items-center justify-center">
                 CHAT
