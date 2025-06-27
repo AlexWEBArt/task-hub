@@ -3,6 +3,7 @@
 import { Heading } from "@/components/ui/Heading"
 import { SearchField } from "@/components/ui/search-field/SearchField"
 import { ProjectStats } from "./project-stats/ProjectStats"
+import ProjectStatsChart from "./project-chart/ProjectChart"
 
 export function Dashboard() {
     return (
@@ -17,7 +18,7 @@ export function Dashboard() {
                 </div>
                 <div className="grid grid-cols-[25%_75%] gap-6">
                     <ProjectStats />
-                    <div>CHART</div>
+                    <ProjectStatsChart />
                 </div>
             </div>
             <div className="p-5 h-screen flex items-center justify-center">
