@@ -32,13 +32,19 @@ export function ProgressBar({ progress }: Props) {
 		<div className='bg-primary/12 relative h-12 w-full overflow-hidden rounded-full'>
 			<div
 				className={cn(
-					'animate-stripes flex h-full cursor-default items-center justify-center rounded-full bg-[length:56px_56px] font-medium text-white',
-					colorProgressBar
+					'flex h-full cursor-default items-center justify-center rounded-full bg-[length:56px_56px] font-medium text-white',
+					colorProgressBar,
+					{
+						'animate-stripes': clamped < 100
+					}
 				)}
 				style={{
 					width: `${clamped}%`,
+
 					backgroundImage:
-						'repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 0, rgba(255, 255, 255, 0.15) 20px, transparent 20px, transparent 40px)'
+						clamped < 100
+							? 'repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 0, rgba(255, 255, 255, 0.15) 20px, transparent 20px, transparent 40px)'
+							: 'none'
 				}}
 			>
 				{progressText}
