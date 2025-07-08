@@ -1,45 +1,68 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));
 
-.root {
-    --foreground: #2a2a2a;
-    --background: #f5f5f5;
-    --primary: #806DF2;
-    --bg-gradient: line-gradient(to top, #f3eeff, #f6f5ff);
+:root {
+	--foreground: #2a2a2a;
+	--background: #f5f5f5;
+	--primary: #806df2;
+	--bg-gradient: linear-gradient(to top, #f3eeff, #f6f5ff);
+	--card: #ffffff;
 }
 
 .dark {
-    --foreground: #f5f5f5;
-    --background: #121212;
-    --bg-gradient: line-gradient(to top, #1a1a1a, #121212);
+	--foreground: #f5f5f5;
+	--background: #121212;
+	--bg-gradient: linear-gradient(to top, #1a1a1a, #121212);
+	--card: #1a1a1a;
 }
 
 @theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --color-primary: var(--primary);
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-primary: var(--primary);
+	--color-card: var(--card);
 }
 
-@Layer base {
-    body {
-        @apply bg-background text-foreground;
-        background-image: var(--color-bg-gradient);
-    }
+@layer base {
+	body {
+		@apply bg-background text-foreground;
+		background-image: var(--bg-gradient);
+	}
+}
+
+@layer utilities {
+	@keyframes stripes {
+		from {
+			background-position: 0 0;
+		}
+
+		to {
+			background-position: 56px 0;
+		}
+	}
+
+	.animate-stripes {
+		animation: stripes 2s linear infinite;
+	}
 }
 
 html {
-    font-size: 16 px;
+	font-size: 16px;
 }
 
 html,
 body {
-    font-family: var(--font-sans), sans-serif;
+	font-family: var(--font-sans), sans-serif;
 }
 
 body {
-    background: var(--color-background);
-    color: var(--color-foreground);
+	background: var(--color-background);
+	color: var(--color-foreground);
 
-    min-width: 320px;
-    min-height: 100vh;
+	min-width: 320px;
+	min-height: 100vh;
+}
+
+button {
+	cursor: pointer;
 }

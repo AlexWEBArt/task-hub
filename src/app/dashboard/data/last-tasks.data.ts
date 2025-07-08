@@ -16,12 +16,12 @@ export const TASKS: ITask[] = [
             {
                 id: '1',
                 title: 'Create wireframes',
-                isCompleted: true
+                isCompleted: false
             },
                         {
                 id: '2',
                 title: 'Design UI components',
-                isCompleted: true
+                isCompleted: false
             },
                         {
                 id: '3',
@@ -65,17 +65,17 @@ export const TASKS: ITask[] = [
             {
                 id: '1',
                 title: 'Implement new feature',
-                isCompleted: false
+                isCompleted: true
             },
                         {
                 id: '2',
                 title: 'Review with stakeholders',
-                isCompleted: false
+                isCompleted: true
             },
                         {
                 id: '3',
                 title: 'Implement new design',
-                isCompleted: false
+                isCompleted: true
             },
                         {
                 id: '4',

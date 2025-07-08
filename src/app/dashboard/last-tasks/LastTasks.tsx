@@ -1,35 +1,28 @@
-import { Task } from "@/components/ui/task/Task";
-import { TASKS } from "../data/last-tasks.data";
+import { TASKS } from '../data/last-tasks.data'
+
+import { Task } from '@/components/ui/task/Task'
 
 export function LastTasks() {
-    return (
-        <div>
-            <h2 className="text-lg font-medium mb-2 text-gray-800 dark:text-gray-100">
-                Lask Tasks
-                <span className="opacity-50 font-normal">
-                    ({TASKS.length})
-                </span>
-            </h2>
-            {
-                TASKS.length ? (
-                    <div className="grid grid-cols-3 gap-4">
-                        {
-                            TASKS.map(task => (
-                                <Task
-                                    key={task.id}
-                                    task={task}
-                                />
-                            ))
-                        }
-                    </div>
-                ) : (
-                    <div>
-                        <p className="opasity-50">
-                            No tasks available
-                        </p>
-                    </div>
-                )
-            }
-        </div>
-    )
+	return (
+		<div>
+			<h2 className='mb-5 text-lg font-medium'>
+				Lask Tasks
+				<span className='text-lg font-normal opacity-40'>({TASKS.length})</span>
+			</h2>
+			{TASKS.length ? (
+				<div className='grid grid-cols-3 gap-4'>
+					{TASKS.map(task => (
+						<Task
+							key={task.id}
+							task={task}
+						/>
+					))}
+				</div>
+			) : (
+				<div>
+					<p className='opacity-50'>No tasks available</p>
+				</div>
+			)}
+		</div>
+	)
 }
