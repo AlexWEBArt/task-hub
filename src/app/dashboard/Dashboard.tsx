@@ -4,6 +4,7 @@ import { LastTasks } from './last-tasks/LastTasks'
 import ProjectStatsChart from './project-chart/ProjectChart'
 import { ProjectStats } from './project-stats/ProjectStats'
 
+import { TaskTimeLine } from '@/components/task-timline/TaskTimeLine'
 import { Heading } from '@/components/ui/Heading'
 import { SearchField } from '@/components/ui/search-field/SearchField'
 
@@ -23,6 +24,7 @@ export function Dashboard() {
 					<ProjectStatsChart />
 				</div>
 				<LastTasks />
+				<TaskTimeLine />
 			</div>
 			<div className='flex h-screen items-center justify-center p-5'>CHAT</div>
 		</div>

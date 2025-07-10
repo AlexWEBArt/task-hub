@@ -58,7 +58,9 @@ export const TaskEditModalClient = observer(({ id }: Props) => {
 		resolver: zodResolver(TaskSchema),
 		defaultValues: {
 			title: '',
-			dueDate: new Date(),
+			dueDate: {
+				date: new Date()
+			},
 			icon: 'Plane'
 		}
 	})
@@ -69,7 +71,7 @@ export const TaskEditModalClient = observer(({ id }: Props) => {
 
 		form.reset({
 			title: task.title,
-			dueDate: new Date(task.dueDate),
+			dueDate: task.dueDate,
 			icon: task.icon
 		})
 	}, [id])
@@ -122,12 +124,12 @@ export const TaskEditModalClient = observer(({ id }: Props) => {
 											<PopoverTrigger asChild>
 												<Button
 													variant='outline'
-													data-empty={!value}
+													data-empty={!value.date}
 													className='data-[empty=true]:text-muted-foreground w-[280px] justify-start text-left font-normal'
 												>
 													<CalendarIcon />
-													{value ? (
-														format(value, 'PPP')
+													{value.date ? (
+														format(value.date, 'PPP')
 													) : (
 														<span>Pick a date</span>
 													)}
@@ -136,8 +138,8 @@ export const TaskEditModalClient = observer(({ id }: Props) => {
 											<PopoverContent className='w-auto p-0'>
 												<Calendar
 													mode='single'
-													selected={value}
-													onSelect={onChange}
+													selected={value.date}
+													onSelect={e => onChange({ ...value, date: e })}
 												/>
 											</PopoverContent>
 										</Popover>

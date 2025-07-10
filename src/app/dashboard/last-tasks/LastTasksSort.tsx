@@ -16,7 +16,7 @@ export const LastTasksSort = observer(() => {
 	return (
 		<Select
 			defaultValue={taskStore.sortByDueDate}
-			onValueChange={taskStore.setSortByDueDate}
+			onValueChange={e => taskStore.setSortByDueDate(e as TTaskSortBy)}
 		>
 			<SelectTrigger className='w-[180px]'>
 				<SelectValue placeholder='Sort by Due Date' />

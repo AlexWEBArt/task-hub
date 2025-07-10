@@ -9,7 +9,7 @@ export const LastTasks = observer(() => {
 	const filteredTasks = taskStore.filteredTasks
 
 	return (
-		<div>
+		<div className='mb-5'>
 			<div className='mb-5 flex items-center justify-between'>
 				<h2 className='text-lg font-medium'>
 					Lask Tasks
