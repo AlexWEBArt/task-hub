@@ -9,7 +9,9 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 
-import type { ITask } from '@/app/dashboard/last-tasks/last-tasks.type'
+import { ICON_MAP } from '@/utils/icon-map'
+
+import type { ITask } from '@/types/task.types'
 
 import { Pages } from '@/config/pages'
 
@@ -24,12 +26,14 @@ export function Task({ task }: Props) {
 	const totalCount = task.subTasks.length
 	const progress = Math.round((completedCount / totalCount) * 100)
 
+	const Icon = ICON_MAP[task.icon]
+
 	return (
 		<div className='bg-card flex flex-col justify-between rounded-xl p-3.5 align-middle'>
 			<div className='mb-3 flex h-full items-start justify-between'>
 				<div className='flex h-full items-start gap-3'>
 					<div className='bg-primary/10 text-primary flex items-center justify-center rounded-full p-1.5'>
-						<task.icon />
+						<Icon />
 					</div>
 					<div className='flex h-full w-32 flex-col justify-between'>
 						<div className='leading-tight font-medium wrap-normal opacity-90'>

@@ -1,12 +1,12 @@
 import { Plane, ShoppingBasket, TabletSmartphone } from "lucide-react";
-import type { ITask } from "../last-tasks/last-tasks.type";
+import type { ITask } from "../../../types/task.types";
 import { USERS } from "./users.data";
 
 export const TASKS: ITask[] = [
     {
         id: '1',
         title: 'Travel App User Flow',
-        icon: Plane,
+        icon: 'Plane',
         dueDate: new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000),
         comments: ['This is a comment', 'Another comment', 'Yet another commet'],
         resources: ['', '', '', '', ''],
@@ -38,7 +38,7 @@ export const TASKS: ITask[] = [
     {
         id: '2',
         title: 'E-commerce Website Redesign',
-        icon: ShoppingBasket,
+        icon: 'ShoppingBasket',
         dueDate: new Date(new Date().getTime() + 1 * 24 * 60 * 60 * 1000),
         comments: ['initial design review', 'Feedback received'],
         resources: ['', '', '', '', ''],
@@ -55,7 +55,7 @@ export const TASKS: ITask[] = [
         {
         id: '3',
         title: 'Mobile App Feature Update',
-        icon: TabletSmartphone,
+        icon: 'TabletSmartphone',
         dueDate: new Date(new Date().getTime() + 3 * 24 * 60 * 60 * 1000),
         comments: ['Feature requirments defined',],
         resources: ['', '', '', ''],

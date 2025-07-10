@@ -1,4 +1,5 @@
 import type { IProfile } from "@/types/profile.types"
+import type { IconName } from "@/utils/icon-map"
 import type { LucideIcon } from "lucide-react"
 
 export interface ISubTask {
@@ -8,7 +9,7 @@ export interface ISubTask {
 }
 
 export interface ITask extends Omit<ISubTask, 'isCompleted'> {
-   icon: LucideIcon
+   icon: IconName
    dueDate: Date
    users: IProfile[]
    subTasks: ISubTask[]
@@ -19,3 +20,5 @@ export interface ITask extends Omit<ISubTask, 'isCompleted'> {
 
 export type TTaskStatus = 'not-started' | 'in-progress' | 'completed'
 export type TTaskSortBy = 'asc' | 'desc'
+
+export type TTaskFromData = Pick<ITask, 'title' | 'dueDate' | 'icon'>

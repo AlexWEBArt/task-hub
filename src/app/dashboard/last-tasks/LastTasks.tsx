@@ -1,7 +1,7 @@
+import { type TTaskSortBy, type TTaskStatus } from '../../../types/task.types'
 import { TASKS } from '../data/last-tasks.data'
 import { LastTasksFilter } from './LastTasksFilter'
 import { LastTasksSort } from './LastTasksSort'
-import { type TTaskSortBy, type TTaskStatus } from './last-tasks.type'
 import { useMemo, useState } from 'react'
 
 import { Task } from '@/components/ui/task/Task'

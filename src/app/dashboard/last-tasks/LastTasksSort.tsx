@@ -1,4 +1,4 @@
-import type { TTaskSortBy } from './last-tasks.type'
+import type { TTaskSortBy } from '../../../types/task.types'
 
 import {
 	Select,

@@ -1,4 +1,4 @@
-import type { TTaskStatus } from './last-tasks.type'
+import type { TTaskStatus } from '../../../types/task.types'
 import { cn } from '@/utils'
 
 import { Button } from '@/components/ui/button'
