@@ -6,8 +6,11 @@ import {
 	MessageSquareMore,
 	Plus
 } from 'lucide-react'
+import { observer } from 'mobx-react-lite'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { SubTaskCreateModal } from '@/app/dashboard/last-tasks/create-sub-task/SubTaskCreateModal'
 
 import { ICON_MAP } from '@/utils/icon-map'
 
@@ -19,7 +22,7 @@ interface Props {
 	task: ITask
 }
 
-export function Task({ task }: Props) {
+export const Task = observer(({ task }: Props) => {
 	const completedCount = task.subTasks.filter(
 		subTask => subTask.isCompleted
 	).length
@@ -93,9 +96,7 @@ export function Task({ task }: Props) {
 						</span>
 					</div>
 					<div className='flex items-center gap-2'>
-						<button className='bg-primary hover:bg-primary/90 rounded-full p-2 text-white transition-colors'>
-							<Plus size={18} />
-						</button>
+						<SubTaskCreateModal taskId={task.id} />
 						<Link
 							href={Pages.TASK_EDIT(task.id)}
 							className='border-primary text-primary hover:bg-primary/10 rounded-full border bg-white p-2 transition-colors'
@@ -107,4 +108,4 @@ export function Task({ task }: Props) {
 			</div>
 		</div>
 	)
-}
+})
