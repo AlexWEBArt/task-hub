@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import type z from 'zod'
 
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
@@ -54,7 +55,7 @@ export const TaskEditModalClient = observer(({ id }: Props) => {
 		return () => document.removeEventListener('keydown', handleEscape)
 	}, [])
 
-	const form = useForm<TTaskFromData>({
+	const form = useForm<z.infer<typeof TaskSchema>>({
 		resolver: zodResolver(TaskSchema),
 		defaultValues: {
 			title: '',

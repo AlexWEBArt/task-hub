@@ -1,5 +1,6 @@
 import { ProgressBar } from '../ProgressBar'
-import { isToday } from 'date-fns'
+import { cn } from '@/utils'
+import { format, isToday } from 'date-fns'
 import {
 	Edit2,
 	Link as LinkLucide,
@@ -22,9 +23,11 @@ import { Pages } from '@/config/pages'
 
 interface Props {
 	task: ITask
+	isColor?: boolean
+	isMinimal?: boolean
 }
 
-export const Task = observer(({ task }: Props) => {
+export const Task = observer(({ task, isColor, isMinimal }: Props) => {
 	const completedCount = task.subTasks.filter(
 		subTask => subTask.isCompleted
 	).length
@@ -40,18 +43,45 @@ export const Task = observer(({ task }: Props) => {
 	}, [task.dueDate.date]) as unknown as string
 
 	return (
-		<div className='bg-card flex flex-col justify-between rounded-xl p-3.5 align-middle'>
-			<div className='mb-3 flex h-full items-start justify-between'>
+		<div
+			className={cn(
+				'bg-card rounded-xl p-3.5',
+				isColor && task.color,
+				isColor && 'text-white'
+			)}
+		>
+			<div
+				className={cn(
+					'mb-3 flex items-start justify-between',
+					isMinimal && 'mb-0 flex-col gap-3'
+				)}
+			>
 				<div className='flex h-full items-start gap-3'>
-					<div className='bg-primary/10 text-primary flex items-center justify-center rounded-full p-1.5'>
+					<div
+						className={cn(
+							'bg-primary/10 text-primary flex items-center justify-center rounded-full p-1.5',
+							isColor && 'bg-white'
+						)}
+					>
 						<Icon />
 					</div>
-					<div className='flex h-full w-32 flex-col justify-between'>
+					<div className={cn(!isMinimal && 'w-32')}>
 						<div className='leading-tight font-medium wrap-normal opacity-90'>
 							{task.title}
 						</div>
 						<div>
-							<span className='text-sm opacity-50'>Due: {dueDate}</span>
+							<span
+								className={cn('text-sm opacity-50', isColor && 'opacity-75')}
+							>
+								{isMinimal ? (
+									<>
+										{format(task.dueDate.startTime!, 'ha')} -{' '}
+										{format(task.dueDate.endTime!, 'ha')}
+									</>
+								) : (
+									<> Due: {dueDate}</>
+								)}
+							</span>
 						</div>
 					</div>
 				</div>
@@ -69,45 +99,47 @@ export const Task = observer(({ task }: Props) => {
 					))}
 				</div>
 			</div>
-			<div>
-				<div className='mb-4'>
-					<ProgressBar progress={progress} />
-				</div>
-				<div className='flex items-center justify-between'>
-					<div className='flex items-center gap-4'>
-						<span className='flex items-center gap-1 text-sm'>
-							<MessageSquareMore
-								size={16}
-								className='opacity-40'
-							/>{' '}
-							{task.comments.length}
-						</span>
-						<span className='flex items-center gap-1 text-sm'>
-							<LucideImage
-								size={16}
-								className='opacity-40'
-							/>{' '}
-							{task.resources.length}
-						</span>
-						<span className='flex items-center gap-1 text-sm'>
-							<LinkLucide
-								size={16}
-								className='opacity-40'
-							/>{' '}
-							{task.links.length}
-						</span>
+			{!isMinimal && (
+				<div>
+					<div className='mb-4'>
+						<ProgressBar progress={progress} />
 					</div>
-					<div className='flex items-center gap-2'>
-						<SubTaskCreateModal taskId={task.id} />
-						<Link
-							href={Pages.TASK_EDIT(task.id)}
-							className='border-primary text-primary hover:bg-primary/10 rounded-full border bg-white p-2 transition-colors'
-						>
-							<Edit2 size={18} />
-						</Link>
+					<div className='flex items-center justify-between'>
+						<div className='flex items-center gap-4'>
+							<span className='flex items-center gap-1 text-sm'>
+								<MessageSquareMore
+									size={16}
+									className='opacity-40'
+								/>{' '}
+								{task.comments.length}
+							</span>
+							<span className='flex items-center gap-1 text-sm'>
+								<LucideImage
+									size={16}
+									className='opacity-40'
+								/>{' '}
+								{task.resources.length}
+							</span>
+							<span className='flex items-center gap-1 text-sm'>
+								<LinkLucide
+									size={16}
+									className='opacity-40'
+								/>{' '}
+								{task.links.length}
+							</span>
+						</div>
+						<div className='flex items-center gap-2'>
+							<SubTaskCreateModal taskId={task.id} />
+							<Link
+								href={Pages.TASK_EDIT(task.id)}
+								className='border-primary text-primary hover:bg-primary/10 rounded-full border bg-white p-2 transition-colors'
+							>
+								<Edit2 size={18} />
+							</Link>
+						</div>
 					</div>
 				</div>
-			</div>
+			)}
 		</div>
 	)
 })
