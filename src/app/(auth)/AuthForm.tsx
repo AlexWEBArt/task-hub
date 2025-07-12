@@ -1,5 +1,6 @@
 'use client'
 
+import { authStore } from '../../../stores/auth.store'
 import { AuthSchema } from '@/zod-schemes/auth.zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
@@ -19,7 +20,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-import { Pages } from '@/config/pages'
+import { DashboardPages } from '@/config/dashboard-pages'
 
 interface Props {
 	type: 'login' | 'register' | 'forgot-password' | 'reset-password'
@@ -28,17 +29,25 @@ interface Props {
 export function AuthForm({ type }: Props) {
 	const isLogin = type === 'login'
 	const form = useForm<z.infer<typeof AuthSchema>>({
-		resolver: zodResolver(AuthSchema)
+		resolver: zodResolver(AuthSchema),
+		defaultValues: {
+			email: '',
+			password: ''
+		}
 	})
 
 	const router = useRouter()
 
 	const onSubmit = (data: z.infer<typeof AuthSchema>) => {
-		toast.success(
-			isLogin ? 'Logged in successfully' : 'Registered successfully'
-		)
+		authStore.login()
 		form.reset()
-		router.replace(Pages.DASHBOARD)
+
+		if (authStore.isLoggedIn) {
+			toast.success(
+				isLogin ? 'Logged in successfully' : 'Registered successfully'
+			)
+			router.replace(DashboardPages.DASHBOARD)
+		}
 	}
 
 	return (

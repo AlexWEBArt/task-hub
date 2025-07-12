@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { Pages } from '@/config/pages'
+import { DashboardPages } from '@/config/dashboard-pages'
 
 interface Props {
 	params: Promise<{ id: string }>
@@ -10,7 +10,7 @@ export default async function TaskEditModal({ params }: Props) {
 	return (
 		<div className='p-6'>
 			<div>
-				<Link href={Pages.DASHBOARD}>&#10229; Back to Dashboard</Link>
+				<Link href={DashboardPages.DASHBOARD}>&#10229; Back to Dashboard</Link>
 			</div>
 		</div>
 	)
