@@ -45,14 +45,14 @@ export const Task = observer(({ task, isColor, isMinimal }: Props) => {
 	return (
 		<div
 			className={cn(
-				'bg-card rounded-xl p-3.5',
+				'bg-card flex flex-col justify-between rounded-xl p-3.5',
 				isColor && task.color,
-				isColor && 'text-white'
+				isColor && 'text-foreground'
 			)}
 		>
 			<div
 				className={cn(
-					'mb-3 flex items-start justify-between',
+					'mb-3 flex h-full items-start justify-between',
 					isMinimal && 'mb-0 flex-col gap-3'
 				)}
 			>
@@ -60,12 +60,17 @@ export const Task = observer(({ task, isColor, isMinimal }: Props) => {
 					<div
 						className={cn(
 							'bg-primary/10 text-primary flex items-center justify-center rounded-full p-1.5',
-							isColor && 'bg-white'
+							isColor && 'text-primary bg-card'
 						)}
 					>
 						<Icon />
 					</div>
-					<div className={cn(!isMinimal && 'w-32')}>
+					<div
+						className={cn(
+							'flex h-full flex-col justify-between',
+							!isMinimal && 'w-32'
+						)}
+					>
 						<div className='leading-tight font-medium wrap-normal opacity-90'>
 							{task.title}
 						</div>
@@ -93,7 +98,7 @@ export const Task = observer(({ task, isColor, isMinimal }: Props) => {
 								alt={user.name}
 								width={36}
 								height={36}
-								className='rounded-full border border-white dark:border-neutral-800'
+								className='border-foreground rounded-full border dark:border-neutral-800'
 							/>
 						</div>
 					))}
@@ -132,7 +137,7 @@ export const Task = observer(({ task, isColor, isMinimal }: Props) => {
 							<SubTaskCreateModal taskId={task.id} />
 							<Link
 								href={DashboardPages.TASK_EDIT(task.id)}
-								className='border-primary text-primary hover:bg-primary/10 rounded-full border bg-white p-2 transition-colors'
+								className='border-primary text-primary hover:bg-primary/10 bg-card rounded-full border p-2 transition-colors'
 							>
 								<Edit2 size={18} />
 							</Link>

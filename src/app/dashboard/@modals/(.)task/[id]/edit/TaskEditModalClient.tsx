@@ -90,10 +90,10 @@ export const TaskEditModalClient = observer(({ id }: Props) => {
 				onClick={closeModal}
 			>
 				<div
-					className='mx-4 max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-lg bg-white p-6 dark:bg-gray-800'
+					className='relative mx-4 max-h-[90vh] max-w-2xl overflow-y-auto rounded-lg bg-white p-6 dark:bg-gray-800'
 					onClick={e => e.stopPropagation()}
 				>
-					<div className='mb-6 flex items-center justify-between'>
+					<div className='mb-6 flex flex-col items-center justify-between'>
 						<h2 className='text-xl font-bold'>Edit Task {id}</h2>
 						<Form {...form}>
 							<form
@@ -177,7 +177,12 @@ export const TaskEditModalClient = observer(({ id }: Props) => {
 								<Button type='submit'>Save</Button>
 							</form>
 						</Form>
-						<button onClick={closeModal}>x</button>
+						<button
+							className='bg-primary absolute top-2 right-2 flex h-8 w-8 items-center justify-center rounded-full p-2 text-white'
+							onClick={closeModal}
+						>
+							x
+						</button>
 					</div>
 				</div>
 			</div>

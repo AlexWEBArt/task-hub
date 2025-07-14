@@ -8,11 +8,11 @@ const HOURS = Array.from({ length: 9 }, (_, i) => i + 9)
 
 export const TaskTimeLine = observer(() => {
 	const todayTasks = taskStore.todayTasks
-	const users = todayTasks
-		.flatMap(task => task.users)
-		.filter(
-			(user, index, self) => index === self.findIndex(u => u.id === user.id)
-		)
+	const users = [
+		...new Map(
+			todayTasks.flatMap(task => task.users).map(user => [user.id, user])
+		).values()
+	]
 
 	return (
 		<div className='bg-card rounded-xl p-5'>

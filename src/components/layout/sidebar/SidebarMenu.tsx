@@ -16,7 +16,7 @@ export function SidebarMenu() {
 								<span>{item.label}</span>
 							</span>
 							{item.label === 'Messages' && (
-								<span className='text-primary rounded-lg bg-[#DCDEF6] px-2 text-xs font-medium'>
+								<span className='text-primary rounded-lg bg-[#DCDEF6] px-2 text-xs font-medium dark:bg-neutral-600 dark:text-white'>
 									4
 								</span>
 							)}
